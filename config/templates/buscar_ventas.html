@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Ventas</title>
+</head>
+<body>
+    <h1>Buscar Ventas</h1>
+    <!--formulario dinamico-->
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Buscar">
+    </form>
+    <!--fin formulario dinamico-->
+    <!--Creacion de tabla-->
+        <h2>Resultados</h2>
+        <table border =1>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Monto</th>
+                    <th>Fecha</th>
+                    <th>Pais</th>
+                </tr>
+            </thead>
+    {% if ventas %}
+            <tbody>
+                {% for  venta in ventas %}
+                <tr>
+                    <td>{{venta.cliente}}</td>
+                    <td>{{venta.producto_vendido}}</td>
+                    <td>{{venta.monto}}</td>
+                    <td>{{venta.fecha}}</td>
+                    <td>{{venta.cliente.pais}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <!--fin Creacion de tabla-->
+</body>
+</html>
